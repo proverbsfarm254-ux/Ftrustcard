@@ -1,0 +1,74 @@
+    <nav class="site-nav-bar">
+      <div class="container">
+        <ul class="menu" id="primary-menu">
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="shop.html"><i class="fas fa-store"></i> Shop</a></li>
+          <li><a href="passport.html"><i class="fas fa-passport"></i> Passport</a></li>
+          <li><a href="id-card.html" class="active"><i class="fas fa-id-card"></i> ID Cards</a></li>
+        </ul>
+      </div>
+    </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ID Card Products • DocuShop</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="reviews.css" />
+  <link rel="stylesheet" href="footer.css" />
+  <link rel="stylesheet" href="products-new.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230a7cff'/%3E%3Cpath d='M16 20h32v6H16zM16 30h22v6H16zM16 40h28v6H16z' fill='white'/%3E%3C/svg%3E" />
+  <script defer src="main.js"></script>
+  <script src="product.js"></script>
+  <script src="cart.js"></script>
+  <script src="admin.js"></script>
+  <script src="product-api.js"></script>
+</head>
+<body>
+  <script src="category-init.js"></script>
+  <header>
+    <!-- Top Banner Section -->
+    <div class="top-banner">
+      <div class="container">
+        <p>ID card products available. <a href="#" class="learn-more">Learn more.</a></p>
+        <button class="close-banner" aria-label="Close banner">×</button>
+      </div>
+    </div>
+    <!-- Countdown Timer Section -->
+    <div class="header-countdown">
+      <div class="container countdown-flex">
+        <div class="countdown-left">
+          <span class="discount-text">Special offers on ID card products!</span>
+          <div class="countdown" aria-label="Special offer countdown">
+            <div><span class="num" id="d">351</span><span class="lbl">Days</span></div>
+            <div><span class="num" id="h">20</span><span class="lbl">Hours</span></div>
+            <div><span class="num" id="m">49</span><span class="lbl">Minutes</span></div>
+            <div><span class="num" id="s">36</span><span class="lbl">Seconds</span></div>
+          </div>
+        </div>
+        <div class="countdown-right">
+          <div class="social-header">
+            <a href="#" aria-label="Newsletter"><i class="fas fa-envelope"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Navigation and other header content here -->
+  </header>
+  <!-- Main content for ID card products -->
+  <main>
+    <h1>ID Card Products</h1>
+    <div id="id-card-products-list">
+      <!-- Products will be loaded here by admin panel and product scripts -->
+    </div>
+  </main>
+  <footer>
+    <!-- Footer content here -->
+  </footer>
+</body>
+</html>
