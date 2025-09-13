@@ -34,7 +34,7 @@ const page = window.location.pathname.split('/').pop();
 const category = categoryMap[page];
 console.log('[DEBUG] Current page:', page, 'Mapped category:', category);
 if (category) {
-  const API_BASE_URL = 'https://trustcards.onrender.com';
+  const API_BASE_URL = 'https://correct-backend-gu05.onrender.com';
   fetch(`${API_BASE_URL}/products?category=${encodeURIComponent(category)}`)
     .then(res => {
       console.log('[DEBUG] Product fetch response status:', res.status);

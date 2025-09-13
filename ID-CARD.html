@@ -4,8 +4,8 @@
   <script defer src="product-api.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Clone Cards • DocuShop</title>
-    <meta name="description" content="Premium clone cards and accessories." />
+    <title>Documents • DocuShop</title>
+    <meta name="description" content="Browse our featured documents and categories." />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="reviews.css" />
     <link rel="stylesheet" href="footer.css" />
@@ -17,13 +17,14 @@
     <script defer src="main.js"></script>
     <script src="product.js"></script>
     <script src="cart.js"></script>
+    <script src="admin.js"></script>
     <script defer src="auth-guard.js"></script>
   </head>
   <body>
   <script src="category-init.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        fetchProducts('clone-cards').then(products => renderProducts(products, '.product-grid'));
+        fetchProducts('documents').then(products => renderProducts(products, '.product-grid'));
       });
     </script>
     <header>
@@ -98,7 +99,7 @@
       <nav class="site-nav-bar">
         <div class="container">
           <ul class="menu" id="primary-menu">
-            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="index.html">HOME</a></li>
             <li><a href="shop.html">SHOP</a></li>
             <li><a href="clone-cards.html">CLONE CARDS</a></li>
             <li class="has-submenu">
@@ -113,7 +114,7 @@
                 <li><a href="kuwaiti-dinar.html">Buy Counterfeit Kuwaiti Dinar</a></li>
               </ul>
             </li>
-            <li><a href="documents.html">DOCUMENTS</a></li>
+            <li><a href="documents.html" class="active">DOCUMENTS</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">CONTACT</a></li>
             <li><a href="how-to-order.html">HOW TO ORDER</a></li>
@@ -123,16 +124,104 @@
         </div>
       </nav>
     </header>
-    <main class="container" style="padding:40px 16px;max-width:1100px;">
-      <h1>Clone Cards</h1>
-      <div class="product-grid">
-        <article class="product card-item">
-          <div class="thumb"></div>
-          <div class="product-category">CLONE CARDS</div>
-          <h3>Premium Clone Card (20K Balance)</h3>
-          <p class="price"><span class="discount">-6%</span> <span class="original">$1,600.00</span> <span class="current">$1,500.00</span></p>
-          <button class="btn add-to-cart-btn">Add to Cart</button>
-        </article>
+
+    <main style="padding:32px 0;">
+      <div class="container">
+        <h1>Documents & Cards</h1>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <span data-result-count style="color:#666"></span>
+          <label>Sort
+            <select data-sort>
+              <option value="default">Default sorting</option>
+              <option value="latest">Sort by latest</option>
+              <option value="price-asc">Sort by price: low to high</option>
+              <option value="price-desc">Sort by price: high to low</option>
+            </select>
+          </label>
+        </div>
+        <section class="catalog" id="documents-catalog">
+          <div class="product-grid">
+            <article class="product document-item" data-category="documents">
+              <div class="thumb">
+          <img src="sideimage.jpg" alt="$1 USD Notes" loading="lazy">
+        </div>
+              <div class="product-category">DRIVING LICENSE</div>
+              <h3>Driving License</h3>
+              <p class="price">$1,000.00</p>
+              <label>Country
+                <select data-variant>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Ireland</option><option>Poland</option><option>Switzerland</option><option>Belgium</option><option>Austria</option><option>Portugal</option><option>Czech Republic</option>
+                </select>
+              </label>
+              <button class="add-to-cart-btn" data-product-id="driving-license">Add to Cart</button>
+              <button class="quick-view-btn" data-product-id="driving-license">Quick View</button>
+            </article>
+
+            <article class="product document-item" data-category="documents">
+              <div class="thumb">
+              <img src="sideimage.jpg" alt="$1 USD Notes" loading="lazy">
+        </div>
+              <div class="product-category">ID CARD</div>
+              <h3>National ID Card</h3>
+              <p class="price">$800.00</p>
+              <label>Country
+                <select data-variant>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Ireland</option><option>Poland</option><option>Switzerland</option><option>Belgium</option><option>Austria</option><option>Portugal</option><option>Czech Republic</option>
+                </select>
+              </label>
+              <button class="add-to-cart-btn" data-product-id="national-id">Add to Cart</button>
+              <button class="quick-view-btn" data-product-id="national-id">Quick View</button>
+            </article>
+
+            <article class="product document-item" data-category="cards">
+              <div class="thumb">
+              <img src="sideimage.jpg" alt="$1 USD Notes" loading="lazy">
+              </div>
+              <div class="product-category">CREDIT CARD</div>
+              <h3>Premium Credit Card</h3>
+              <p class="price">$1,500.00</p>
+              <label>Country
+                <select data-variant>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Ireland</option><option>Poland</option><option>Switzerland</option><option>Belgium</option><option>Austria</option><option>Portugal</option><option>Czech Republic</option>
+                </select>
+              </label>
+              <button class="add-to-cart-btn" data-product-id="credit-card">Add to Cart</button>
+              <button class="quick-view-btn" data-product-id="credit-card">Quick View</button>
+            </article>
+
+            <article class="product document-item" data-category="cards">
+              <div class="thumb">
+              <img src="sideimage.jpg" alt="$1 USD Notes" loading="lazy">
+              </div>
+              <div class="product-category">GOVERNMENT CARD</div>
+              <h3>Government Benefits Card</h3>
+              <p class="price">$900.00</p>
+              <label>Country
+                <select data-variant>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Ireland</option><option>Poland</option><option>Switzerland</option><option>Belgium</option><option>Austria</option><option>Portugal</option><option>Czech Republic</option>
+                </select>
+              </label>
+              <button class="add-to-cart-btn" data-product-id="gov-card">Add to Cart</button>
+              <button class="quick-view-btn" data-product-id="gov-card">Quick View</button>
+            </article>
+
+            <article class="product document-item" data-category="documents">
+              <div class="thumb">
+              <img src="sideimage.jpg" alt="$1 USD Notes" loading="lazy">
+              </div>
+              <div class="product-category">PASSPORT</div>
+              <h3>Grade A Passport</h3>
+              <p class="price">$1,250.00</p>
+              <label>Country
+                <select data-variant>
+                  <option>United States</option><option>United Kingdom</option><option>Canada</option><option>Australia</option><option>Germany</option><option>France</option><option>Italy</option><option>Spain</option><option>Netherlands</option><option>Sweden</option><option>Norway</option><option>Denmark</option><option>Finland</option><option>Ireland</option><option>Poland</option><option>Switzerland</option><option>Belgium</option><option>Austria</option><option>Portugal</option><option>Czech Republic</option>
+                </select>
+              </label>
+              <button class="add-to-cart-btn" data-product-id="passport">Add to Cart</button>
+              <button class="quick-view-btn" data-product-id="passport">Quick View</button>
+            </article>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -208,28 +297,37 @@
         </div>
       </div>
     </footer>
-    <script src="frontend/js/products.js"></script>
+
     <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      const pageToCategory = {
-        'shop.html': 'shop',
-        'clone-cards.html': 'clone-cards',
-        'us-dollar-bills.html': 'us-dollar-bills',
-        'euro-bills.html': 'euro-bills',
-        'british-pounds.html': 'british-pounds',
-        'australian-dollars.html': 'australian-dollars',
-        'canadian-dollars.html': 'canadian-dollars',
-        'swiss-franc.html': 'swiss-franc',
-        'kuwaiti-dinar.html': 'kuwaiti-dinar',
-        'documents.html': 'documents',
-        'counterfeit-notes.html': 'counterfeit-notes'
-      };
-      const page = location.pathname.split('/').pop();
-      const category = pageToCategory[page];
-      if (category) {
-        window.renderCategoryProducts(category);
-      }
-    });
+      (function(){
+        var y = new Date().getFullYear();
+        var el = document.getElementById('year');
+        if (el) el.textContent = String(y);
+      })();
     </script>
+    <script>
+window.addEventListener('DOMContentLoaded', function() {
+  const pageToCategory = {
+    'shop.html': 'shop',
+    'clone-cards.html': 'clone-cards',
+    'us-dollar-bills.html': 'us-dollar-bills',
+    'euro-bills.html': 'euro-bills',
+    'british-pounds.html': 'british-pounds',
+    'australian-dollars.html': 'australian-dollars',
+    'canadian-dollars.html': 'canadian-dollars',
+    'swiss-franc.html': 'swiss-franc',
+    'kuwaiti-dinar.html': 'kuwaiti-dinar',
+    'documents.html': 'documents',
+    'counterfeit-notes.html': 'counterfeit-notes'
+  };
+  const page = location.pathname.split('/').pop();
+  const category = pageToCategory[page];
+  if (category) {
+    window.renderCategoryProducts(category);
+  }
+});
+</script>
   </body>
 </html>
+
+

@@ -2,7 +2,7 @@
 // Reusable script to fetch and render products from backend API
 
 async function fetchProducts(category = null) {
-  let url = 'https://trustcards.onrender.com/products';
+  let url = 'https://correct-backend-gu05.onrender.com/products';
   if (category) url += `?category=${encodeURIComponent(category)}`;
   console.log('[DEBUG] fetchProducts URL:', url);
   const res = await fetch(url);

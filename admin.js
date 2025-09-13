@@ -1,23 +1,5 @@
 // Set API base URL for easy switching between local and deployed environments
-const API_BASE_URL = 'https://trustcards.onrender.com'; // Live backend URL
-// --- Admin authentication guard ---
-(function() {
-    let session = sessionStorage.getItem('docushop_session') || localStorage.getItem('docushop_session');
-    if (!session) {
-        window.location.href = 'admin-login.html';
-        return;
-    }
-    try {
-        session = JSON.parse(session);
-        if (!session.user || session.user.role !== 'admin') {
-            window.location.href = 'admin-login.html';
-            return;
-        }
-    } catch (e) {
-        window.location.href = 'admin-login.html';
-        return;
-    }
-})();
+const API_BASE_URL = 'https://correct-backend-gu05.onrender.com'; // Live backend URL
 
 // Admin Panel JavaScript
 class AdminPanel {
@@ -555,7 +537,7 @@ let ordersCache = []; // store orders for popup view
 
 async function fetchOrders() {
   try {
-    const res = await fetch('https://trustcards.onrender.com/orders');
+    const res = await fetch('https://correct-backend-gu05.onrender.com/orders');
     if (!res.ok) throw new Error("Failed to fetch orders");
 
     const orders = await res.json();
@@ -618,7 +600,7 @@ async function cancelOrder(orderId) {
   if (!confirm("Are you sure you want to delete this order permanently?")) return;
 
   try {
-    const res = await fetch(`https://trustcards.onrender.com/orders/${orderId}`, {
+    const res = await fetch(`https://correct-backend-gu05.onrender.com/orders/${orderId}`, {
       method: "DELETE"
     });
 
