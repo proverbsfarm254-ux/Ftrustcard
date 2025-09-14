@@ -1,4 +1,3 @@
-const API_BASE_URL = "https://trustcards.onrender.com";
 (function(){
   "use strict";
 
@@ -295,6 +294,7 @@ window.updateCartDetails = updateCartDetails;
 window.updateCartTotal = updateCartTotal;
 window.addItem = addItem;
 window.renderCheckoutItems = renderCheckoutItems;
+
 
 
 
