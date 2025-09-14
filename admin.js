@@ -1,4 +1,3 @@
-// Set API base URL for easy switching between local and deployed environments
 const API_BASE_URL = "https://trustcards.onrender.com"; // backend API base URL
 // Admin Panel JavaScript
 class AdminPanel {
@@ -711,6 +710,7 @@ window.viewOrderDetails = viewOrderDetails;
 
 // Auto-run when admin panel loads
 document.addEventListener("DOMContentLoaded", fetchOrders);
+
 
 
 
