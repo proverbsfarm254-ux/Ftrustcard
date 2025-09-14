@@ -203,8 +203,7 @@ class AdminPanel {
             'orders': 'Order Management',
             'settings': 'Admin Settings'
         };
-        return titles[section] || 'Dashboard';
-    }
+     }
 
     // -------------------
     // PRODUCTS
@@ -508,6 +507,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.adminPanel = new AdminPanel();
     fetchOrders();
 });
+
 
 
 
