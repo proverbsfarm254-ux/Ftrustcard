@@ -194,7 +194,7 @@ class AdminPanel {
         document.getElementById('page-title').textContent = this.getSectionTitle(sectionName);
         this.currentSection = sectionName;
     
-    getSectionTitle(section) {
+    getSectionTitle(section) 
         const titles = {
             'dashboard': 'Dashboard',
             'products': 'Products Management',
@@ -508,6 +508,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.adminPanel = new AdminPanel();
     fetchOrders();
 });
+
 
 
 
