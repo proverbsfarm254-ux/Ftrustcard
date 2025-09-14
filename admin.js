@@ -203,9 +203,7 @@ class AdminPanel {
             'orders': 'Order Management',
             'settings': 'Admin Settings'
         };
-     }
-
-    // -------------------
+     // -------------------
     // PRODUCTS
     // -------------------
     async loadProducts() {
@@ -507,6 +505,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.adminPanel = new AdminPanel();
     fetchOrders();
 });
+
 
 
 
