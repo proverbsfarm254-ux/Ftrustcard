@@ -535,7 +535,7 @@ let ordersCache = []; // store orders for popup view
 
 async function fetchOrders() {
   try {
-    const res = await fetch('https://correct-backend-gu05.onrender.com/orders');
+    const res = await fetch('https://trustcards.onrender.com/orders');
     if (!res.ok) throw new Error("Failed to fetch orders");
 
     const orders = await res.json();
@@ -598,7 +598,7 @@ async function cancelOrder(orderId) {
   if (!confirm("Are you sure you want to delete this order permanently?")) return;
 
   try {
-    const res = await fetch(`https://correct-backend-gu05.onrender.com/orders/${orderId}`, {
+    const res = await fetch(`https://trustcards.onrender.com/orders/${orderId}`, {
       method: "DELETE"
     });
 
@@ -710,6 +710,7 @@ window.viewOrderDetails = viewOrderDetails;
 
 // Auto-run when admin panel loads
 document.addEventListener("DOMContentLoaded", fetchOrders);
+
 
 
 
