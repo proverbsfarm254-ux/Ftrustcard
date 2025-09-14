@@ -1,4 +1,4 @@
-(function(){
+function(){
   "use strict";
 
   const CART_STORAGE_KEY = "docushop_cart_items";
@@ -294,6 +294,7 @@ window.updateCartDetails = updateCartDetails;
 window.updateCartTotal = updateCartTotal;
 window.addItem = addItem;
 window.renderCheckoutItems = renderCheckoutItems;
+
 
 
 
