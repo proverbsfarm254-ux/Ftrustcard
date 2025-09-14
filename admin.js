@@ -276,8 +276,7 @@ class AdminPanel {
             this.renderProducts();
         } catch (err) {
             this.showNotification('Error loading products: ' + err.message, 'error');
-        }
-    }
+        
 
   renderProducts() {
     const container = document.getElementById('products-grid');
@@ -717,6 +716,7 @@ window.viewOrderDetails = viewOrderDetails;
 
 // Auto-run when admin panel loads
 document.addEventListener("DOMContentLoaded", fetchOrders);
+
 
 
 
