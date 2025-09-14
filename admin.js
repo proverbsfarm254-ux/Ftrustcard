@@ -1,4 +1,5 @@
 // Admin Panel JavaScript
+const API_BASE_URL = "https://trustcards.onrender.com";
 class AdminPanel {
     constructor() {
         this.currentSection = 'dashboard';
@@ -716,6 +717,7 @@ window.viewOrderDetails = viewOrderDetails;
 
 // Auto-run when admin panel loads
 document.addEventListener("DOMContentLoaded", fetchOrders);
+
 
 
 
