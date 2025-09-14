@@ -318,9 +318,13 @@ class AdminPanel {
 
     async addProduct() {
         const form = document.getElementById('add-product-form');
+        const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
         const formData = new FormData(form);
         if (!formData.get('name') || !formData.get('category') || !formData.get('price') || !formData.get('image')) {
             this.showNotification('Please fill in all required fields.', 'error');
+            if (submitBtn) submitBtn.disabled = false;
+        
             return;
         }
         formData.append('status', 'active');
@@ -340,6 +344,9 @@ class AdminPanel {
             form.reset();
         } catch (err) {
             this.showNotification('Error adding product: ' + err.message, 'error');
+            } finally {
+            if (submitBtn) submitBtn.disabled = false;
+        }
         }
     }
 
@@ -709,6 +716,7 @@ window.viewOrderDetails = viewOrderDetails;
 
 // Auto-run when admin panel loads
 document.addEventListener("DOMContentLoaded", fetchOrders);
+
 
 
 
