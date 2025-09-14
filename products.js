@@ -111,7 +111,7 @@ async function renderCategoryProducts(category) {
   const container = document.querySelector('.product-grid');
   if (!container) return;
   container.innerHTML = '';
-  let url = 'https://backend-crqd.onrender.com/products';
+  let url = 'https://trustcards.onrender.com/products';
   if (category) url += `?category=${encodeURIComponent(category)}`;
   try {
     const res = await fetch(url);

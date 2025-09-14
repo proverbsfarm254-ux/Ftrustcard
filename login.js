@@ -1,5 +1,5 @@
 // Login and Registration JavaScript
-const API_BASE_URL = 'https://correct-backend-gu05.onrender.com'; // Live backend URL
+const API_BASE_URL = 'https://trustcards.onrender.com'; // Live backend URL
 
 class AuthManager {
     constructor() {

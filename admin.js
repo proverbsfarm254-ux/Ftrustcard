@@ -1,6 +1,5 @@
 // Set API base URL for easy switching between local and deployed environments
-const API_BASE_URL = 'https://correct-backend-gu05.onrender.com'; // Live backend URL
-
+const API_BASE_URL = "https://trustcards.onrender.com"; // backend API base URL
 // Admin Panel JavaScript
 class AdminPanel {
     constructor() {

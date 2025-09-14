@@ -18,23 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const categoryMap = {
   'shop.html': 'shop',
-  'clone-cards.html': 'clone-cards',
-  'us-dollar-bills.html': 'us-dollar-bills',
-  'euro-bills.html': 'euro-bills',
-  'british-pounds.html': 'british-pounds',
-  'australian-dollars.html': 'australian-dollars',
-  'canadian-dollars.html': 'canadian-dollars',
-  'swiss-franc.html': 'swiss-franc',
-  'kuwaiti-dinar.html': 'kuwaiti-dinar',
-  'documents.html': 'documents',
-  'counterfeit-notes.html': 'counterfeit-notes'
+  'ID-cards.html': 'ID-cards',
+  'passport.html': 'passport',
 };
 
 const page = window.location.pathname.split('/').pop();
 const category = categoryMap[page];
 console.log('[DEBUG] Current page:', page, 'Mapped category:', category);
 if (category) {
-  const API_BASE_URL = 'https://correct-backend-gu05.onrender.com';
+  const API_BASE_URL = 'https://trustcards.onrender.com';
   fetch(`${API_BASE_URL}/products?category=${encodeURIComponent(category)}`)
     .then(res => {
       console.log('[DEBUG] Product fetch response status:', res.status);

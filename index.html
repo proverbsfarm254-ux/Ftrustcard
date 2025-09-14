@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>DocuShop Template — Clean Placeholder Site</title>
+  <title>Online Passports</title>
     <meta name="description" content="A clean, legal placeholder template replicating a typical shop layout for offline demo." />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="reviews.css" />
@@ -16,6 +16,10 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%230a7cff'/%3E%3Cpath d='M16 20h32v6H16zM16 30h22v6H16zM16 40h28v6H16z' fill='white'/%3E%3C/svg%3E" />
     <script defer src="main.js"></script>
     <script defer src="products.js"></script>
+    <script src="category-init.js"></script>
+    <script src="product-api.js"></script>
+    <script src="cart.js"></script>
+    <script src="admin.js"></script>>
   </head>
   <body>
     <header>
@@ -93,20 +97,8 @@
           <ul class="menu" id="primary-menu">
             <li><a href="index.html" class="active">HOME</a></li>
             <li><a href="shop.html">SHOP</a></li>
-            <li><a href="clone-cards.html">CLONE CARDS</a></li>
-            <li class="has-submenu">
-              <a href="counterfeit-notes.html">COUNTERFEIT NOTES</a>
-              <ul class="submenu">
-                <li><a href="us-dollar-bills.html">Buy Counterfeit US Dollar Bills</a></li>
-                <li><a href="euro-bills.html">Buy Counterfeit Euro Bills</a></li>
-                <li><a href="british-pounds.html">Buy Counterfeit British Pounds</a></li>
-                <li><a href="australian-dollars.html">Buy Counterfeit Australian Dollars</a></li>
-                <li><a href="canadian-dollars.html">Buy Counterfeit Canadian Dollars</a></li>
-                <li><a href="swiss-franc.html">Buy Counterfeit Swiss Franc</a></li>
-                <li><a href="kuwaiti-dinar.html">Buy Counterfeit Kuwaiti Dinar</a></li>
-              </ul>
-            </li>
-            <li><a href="documents.html">DOCUMENTS</a></li>
+            <li><a href="ID-cards.html">ID-CARDS</a></li>
+            <li><a href="passport.html">PASSPORTS</a></li>
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="contact.html">CONTACT</a></li>
             <li><a href="how-to-order.html">HOW TO ORDER</a></li>
@@ -172,98 +164,97 @@
           
           <!-- Category Filters -->
           <div class="category-filters">
-            <button class="category-filter active" data-category="all">All Products</button>
-            <button class="category-filter" data-category="counterfeit-notes">Counterfeit Notes</button>
-            <button class="category-filter" data-category="clone-cards">Clone Cards</button>
-            <button class="category-filter" data-category="documents">Documents</button>
-          </div>
-          
+  <a href="index.html" class="category-filter active">All Products</a>
+  <a href="shop.html" class="category-filter">SHOP</a>
+  <a href="passport.html" class="category-filter">PASSPORTS</a>
+  <a href="ID-cards.html" class="category-filter">ID-CARDS</a>
+</div>
+
           <!-- Product Grid -->
           <div class="product-grid">
             <!-- Products will be dynamically populated by JavaScript -->
           </div>
         </div>
+        <div class="product-grid">
           <!-- Additional Products -->
-          <div class="product-grid">
-            <!-- Notebook Set -->
-            <article class="product-card">
-              <div class="product-image">
-                <img src="sideimage.jpg" alt="Notebook Set" loading="lazy">
-                <button class="quick-view-btn" data-product-id="notebook">Quick View</button>
-              </div>
-              <div class="product-info">
-                <h3>Notebook Set</h3>
-                <div class="price">$18.00</div>
-                <p class="description">Professional notebook set for your daily needs</p>
-                <button class="add-to-cart-btn" data-product-id="notebook">
-                  <i class="fas fa-shopping-cart"></i>
-                  Add to Cart
-                </button>
-              </div>
-            </article>
+          <article class="product-card">
+  <div class="product-image">
+    <img src="Employee ID Badge.jpg" alt="Employee ID Badge" loading="lazy">
+    <button class="quick-view-btn" data-product-id="employee-id">Quick View</button>
+  </div>
+  <div class="product-info">
+    <h3>Employee ID Badge</h3>
+    <div class="price">$20.00</div>
+    <p class="description">A customizable company ID card with employee photo, role, and access permissions.</p>
+    <button class="add-to-cart-btn" data-product-id="employee-id">
+      <i class="fas fa-shopping-cart"></i>
+      Add to Cart
+    </button>
+  </div>
+</article>
 
-            <!-- Premium Pens -->
+            <!-- Student Id-Card -->
             <article class="product-card">
-              <div class="product-image">
-                <img src="sideimage.jpg" alt="Premium Pens" loading="lazy">
-                <button class="quick-view-btn" data-product-id="pens">Quick View</button>
-              </div>
-              <div class="product-info">
-                <h3>Premium Pens (5-pack)</h3>
-                <div class="price">$12.00</div>
-                <p class="description">High-quality premium pens, set of 5</p>
-                <button class="add-to-cart-btn" data-product-id="pens">
-                  <i class="fas fa-shopping-cart"></i>
-                  Add to Cart
-                </button>
-              </div>
-            </article>
+  <div class="product-image">
+    <img src="Student ID Card.png" alt="Student ID Card" loading="lazy">
+    <button class="quick-view-btn" data-product-id="student-id">Quick View</button>
+  </div>
+  <div class="product-info">
+    <h3>Student ID Card</h3>
+    <div class="price">$15.00</div>
+    <p class="description">Issued by schools and universities, provides identity verification and campus access.</p>
+    <button class="add-to-cart-btn" data-product-id="student-id">
+      <i class="fas fa-shopping-cart"></i>
+      Add to Cart
+    </button>
+  </div>
+</article>
 
-            <!-- Headphones -->
+
+            <!-- International passport -->
             <article class="product-card">
               <div class="product-image">
-                <img src="sideimage.jpg" alt="Noise-Canceling Headphones" loading="lazy">
-                <button class="quick-view-btn" data-product-id="headphones">Quick View</button>
+                <img src="International Passport.jpg" alt="International Passport" loading="lazy">
+                <button class="quick-view-btn" data-product-id="International Passport">Quick View</button>
               </div>
               <div class="product-info">
-                <h3>Noise-Canceling Headphones</h3>
+                <h3>International Passport</h3>
                 <div class="price">$129.00</div>
-                <p class="description">Premium noise-canceling headphones for immersive audio</p>
-                <button class="add-to-cart-btn" data-product-id="headphones">
+                <p class="description">International Passport</p>
+                <button class="add-to-cart-btn" data-product-id="International Passport">
                   <i class="fas fa-shopping-cart"></i>
                   Add to Cart
                 </button>
               </div>
             </article>
 
-            <!-- Desk Chair -->
+            <!-- Library ID-Card -->
+                      <article class="product-card">
+            <div class="product-image">
+              <img src="Library ID Card.jpg" alt="Library ID Card" loading="lazy">
+              <button class="quick-view-btn" data-product-id="library-id">Quick View</button>
+            </div>
+            <div class="product-info">
+              <h3>Library ID Card</h3>
+              <div class="price">$10.00</div>
+              <p class="description">Issued by libraries for borrowing books and accessing library services.</p>
+              <button class="add-to-cart-btn" data-product-id="library-id">
+                <i class="fas fa-shopping-cart"></i>
+                Add to Cart
+              </button>
+            </div>
+          </article>
+            <!-- National ID cards -->
             <article class="product-card">
               <div class="product-image">
-                <img src="sideimage.jpg" alt="Ergonomic Desk Chair" loading="lazy">
-                <button class="quick-view-btn" data-product-id="chair">Quick View</button>
-              </div>
-              <div class="product-info">
-                <h3>Ergonomic Desk Chair</h3>
-                <div class="price">$279.00</div>
-                <p class="description">Comfortable ergonomic chair for long work hours</p>
-                <button class="add-to-cart-btn" data-product-id="chair">
-                  <i class="fas fa-shopping-cart"></i>
-                  Add to Cart
-                </button>
-              </div>
-            </article>
-
-            <!-- USB Hub -->
-            <article class="product-card">
-              <div class="product-image">
-                <img src="sideimage.jpg" alt="USB-C Hub" loading="lazy">
+                <img src="National ID Card.jpg" alt="National ID Card" loading="lazy">
                 <button class="quick-view-btn" data-product-id="usb-hub">Quick View</button>
               </div>
               <div class="product-info">
-                <h3>USB-C Hub</h3>
+                <h3>National ID Card</h3>
                 <div class="price">$39.00</div>
-                <p class="description">Versatile USB-C hub with multiple ports</p>
-                <button class="add-to-cart-btn" data-product-id="usb-hub">
+                <p class="description">A secure identification card with holographic features, commonly used for official verification.</p>
+                <button class="add-to-cart-btn" data-product-id="National ID Card">
                   <i class="fas fa-shopping-cart"></i>
                   Add to Cart
                 </button>
@@ -438,207 +429,218 @@
           </div>
 
           <div class="product-grid">
-            <!-- Documents -->
+            <!-- Passport -->
             <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Grade A Passport" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">DOCUMENTS</div>
-              <h3>Grade A Passports</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(124)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-17%</span>
-                <span class="original">$1,500.00</span>
-                <span class="current">$1,250.00</span>
-              </p>
-              <div class="product-actions">
-              <button class="btn add-to-cart" aria-label="Add Grade a passport to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple variants available</span>
-            </article>
+  <div class="thumb">
+    <img src="Standard Passport.jpg" alt="Standard Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>Standard Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★☆</span>
+    <span class="count">(210)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-10%</span>
+    <span class="original">$1,000.00</span>
+    <span class="current">$900.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add Standard Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
 
-            <!-- Clone Cards -->
-            <article class="product card-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Premium Clone Card" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">CLONE CARDS</div>
-              <h3>Premium Clone Card (20K Balance)</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(89)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-6%</span>
-                <span class="original">$1,600.00</span>
-                <span class="current">$1,500.00</span>
-              </p>
-              <div>
-              <button class="btn add-to-cart" aria-label="Add Premium Clone Card to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple variants available</span>
-            </article>
 
-            <!-- Quality Bills -->
-            <article class="product bill-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Premium Bills" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">QUALITY BILLS</div>
-              <h3>Premium USD Bills</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(156)</span>
-              </div>
-              <p class="price">$500.00 – $3,500.00</p>
-              <div class="product-actions">
-               <button class="btn add-to-cart" aria-label="Add Grade a passport to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple denominations available</span>
-            </article>
-            <!-- ID Cards -->
+            <!-- Passport2 -->
             <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Premium ID Cards" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">DOCUMENTS</div>
-              <h3>Premium ID Cards</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(92)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-23%</span>
-                <span class="original">$1,300.00</span>
-                <span class="current">$1,000.00</span>
-              </p>
-              <div class="product-actions">
-                <button class="btn add-to-cart" aria-label="Add Premium ID Cards to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple countries available</span>
-            </article>
-            <!-- Devices -->
-            <article class="product device-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Card Reader" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">DEVICES</div>
-              <h3>Professional Card Reader</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(67)</span>
-              </div>
-              <p class="price">$2,500.00</p>
-              <button class="btn add-to-cart" aria-label="Add Premium ID Cards to cart">Add to Cart</button>
-          </article>
-          </div>
-        </div>
-      </section>
-   
+  <div class="thumb">
+    <img src="Diplomatic Passport.png" alt="Diplomatic Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>Diplomatic Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★★</span>
+    <span class="count">(98)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-20%</span>
+    <span class="original">$2,000.00</span>
+    <span class="current">$1,600.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add Diplomatic Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+
+            <!-- Passport 3 -->
+            <!-- Passport 3 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="Emergency Passport.jpg" alt="Emergency Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>Emergency Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★☆</span>
+    <span class="count">(57)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-15%</span>
+    <span class="original">$1,200.00</span>
+    <span class="current">$1,020.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add Emergency Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+            <!-- Passport 4 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="Service Passport.jpg" alt="Service Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>Service Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★★</span>
+    <span class="count">(145)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-12%</span>
+    <span class="original">$1,400.00</span>
+    <span class="current">$1,230.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add Service Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+            <!-- Passport 5 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="Child Passport.png" alt="Child Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>Child Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★☆</span>
+    <span class="count">(76)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-18%</span>
+    <span class="original">$800.00</span>
+    <span class="current">$656.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add Child Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+</section>
     <section class="catalog" id="top-products">
-        <div class="container">
-          <h2>BUY 100 CAD ONLINE</h2>
+        
+        <section> <h2>BUY INTERNATIONAL PASSPORTS</h2></section> 
+        
       <div class="product-grid">
   
-            <!-- More Documents -->
             <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Resident Permits" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">DOCUMENTS</div>
-              <h3>Resident Permits</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(78)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-17%</span>
-                <span class="original">$1,450.00</span>
-                <span class="current">$1,200.00</span>
-              </p>
-              <div class="product-actions">
-                <button class="btn add-to-cart" aria-label="Add Resident Permit to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple countries available</span>
-            </article>
-            
+  <div class="thumb">
+    <img src="United States Passport.jpg" alt="United States Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>United States Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★★</span>
+    <span class="count">(312)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-25%</span>
+    <span class="original">$1,800.00</span>
+    <span class="current">$1,350.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add United States Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+
                          
-             <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Resident Permits" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">COUNTERFEIT NOTE</div>
-              <h3>BUY 50 GBP NOTE</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(83)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-17%</span>
-                <span class="original">$2,550.00</span>
-                <span class="current">$2,116.50</span>
-              </p>
-              <div class="product-actions">
-                <button class="btn add-to-cart" aria-label="Add 50 GBP NOTE to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple countries Note Available</span>
-            </article>
+            <!-- Passport 7 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="United Kingdom Passport.png" alt="United Kingdom Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>United Kingdom Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★☆</span>
+    <span class="count">(189)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-15%</span>
+    <span class="original">$1,600.00</span>
+    <span class="current">$1,360.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add United Kingdom Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+
            
-           <!-- Product 3 (discount) -->
-             <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Resident Permits" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">Clone cards for sale Near Me</div>
-              <h3>Clone Cards</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(83)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-17%</span>
-                <span class="original">$2,550.00</span>
-                <span class="current">$2,116.50</span>
-              </p>
-              <div class="product-actions">
-                <button class="btn add-to-cart" aria-label="Add 50 GBP NOTE to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">Multiple countries Note Available</span>
-            </article>
-           
-            <!-- Product 4 (discount) -->
-            <article class="product document-item">
-              <div class="thumb">
-                <img src="sideimage.jpg" alt="Resident Permits" loading="lazy">
-                <div class="quick-view">Quick View</div>
-              </div>
-              <div class="product-category">Buy Drivers License Online</div>
-              <h3>Drivers License</h3>
-              <div class="product-rating">
-                <span class="stars">★★★★★</span>
-                <span class="count">(83)</span>
-              </div>
-              <p class="price">
-                <span class="discount">-17%</span>
-                <span class="original">$2,550.00</span>
-                <span class="current">$2,116.50</span>
-              </p>
-              <div class="product-actions">
-                <button class="btn add-to-cart" aria-label="Add 50 GBP NOTE to cart">Add to Cart</button>
-              </div>
-              <span class="variant-note">This product has multiple variants. The options may be chosen on the product page</span>
-            </article>
+           <!-- Passport 8 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="German Passport.jpg" alt="German Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>German Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★★</span>
+    <span class="count">(254)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-20%</span>
+    <span class="original">$1,700.00</span>
+    <span class="current">$1,360.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add German Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
+            <!-- Passport 9 -->
+<article class="product document-item">
+  <div class="thumb">
+    <img src="French Passport.jpg" alt="French Passport" loading="lazy">
+    <div class="quick-view">Quick View</div>
+  </div>
+  <div class="product-category">DOCUMENTS</div>
+  <h3>French Passport</h3>
+  <div class="product-rating">
+    <span class="stars">★★★★☆</span>
+    <span class="count">(175)</span>
+  </div>
+  <p class="price">
+    <span class="discount">-18%</span>
+    <span class="original">$1,550.00</span>
+    <span class="current">$1,271.00</span>
+  </p>
+  <div class="product-actions">
+    <button class="btn add-to-cart" aria-label="Add French Passport to cart">Add to Cart</button>
+  </div>
+  <span class="variant-note">Multiple variants available</span>
+</article>
           </div>
         </div>
       </section>
