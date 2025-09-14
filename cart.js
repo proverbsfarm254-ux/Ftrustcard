@@ -277,25 +277,6 @@ window.updateCartTotal = updateCartTotal;
 window.renderCheckoutItems = renderCheckoutItems;
 
 
-  document.addEventListener('DOMContentLoaded', init);
-})();
-// Initialize cart on page load
-document.addEventListener('DOMContentLoaded', function() {
-  updateCartDetails();
-  updateCartTotal();
-});
-document.addEventListener('DOMContentLoaded', function() {
-  updateCartDetails();     // refresh cart icon count
-  updateCartTotal();       // refresh totals
-  renderCheckoutItems();   // refresh checkout items (if on checkout page)
-});
-// Expose cart functions globally so other scripts/pages can access them
-window.updateCartDetails = updateCartDetails;
-window.updateCartTotal = updateCartTotal;
-window.addItem = addItem;
-window.renderCheckoutItems = renderCheckoutItems;
-
-
 
 
 
