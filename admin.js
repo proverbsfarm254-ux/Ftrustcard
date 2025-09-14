@@ -182,7 +182,7 @@ class AdminPanel {
 
     }
 
-    showSection(sectionName) {
+    showSection(sectionName) 
         document.querySelectorAll('.content-section').forEach(section => {
             section.classList.remove('active');
         });
@@ -509,6 +509,7 @@ window.addEventListener("DOMContentLoaded", () => {
     window.adminPanel = new AdminPanel();
     fetchOrders();
 });
+
 
 
 
