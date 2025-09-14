@@ -180,21 +180,23 @@ class AdminPanel {
         });
     }
 
-    }
-
-    showSection(sectionName) 
+    showSection(sectionName) {
         document.querySelectorAll('.content-section').forEach(section => {
             section.classList.remove('active');
         });
 
         document.getElementById(sectionName).classList.add('active');
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
         document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
 
         document.getElementById('page-title').textContent = this.getSectionTitle(sectionName);
         this.currentSection = sectionName;
-    
-    getSectionTitle(section) 
+    }
+
+    getSectionTitle(section) {
         const titles = {
             'dashboard': 'Dashboard',
             'products': 'Products Management',
@@ -203,9 +205,70 @@ class AdminPanel {
             'orders': 'Order Management',
             'settings': 'Admin Settings'
         };
-     // -------------------
-    // PRODUCTS
-    // -------------------
+        return titles[section] || 'Dashboard';
+    }
+
+    showModal(modalId) {
+        document.getElementById(modalId).classList.add('active');
+    }
+
+    hideAllModals() {
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.classList.remove('active');
+        });
+    }
+
+    loadDashboardData() {
+        this.updateStats();
+        this.loadRecentActivity();
+    }
+
+    updateStats() {
+        const totalUsers = document.getElementById('total-users');
+        if (totalUsers) totalUsers.textContent = this.users.length;
+        const totalProducts = document.getElementById('total-products');
+        if (totalProducts) totalProducts.textContent = this.products.length;
+        const totalOrders = document.getElementById('total-orders');
+        if (totalOrders) totalOrders.textContent = this.orders.length;
+
+        const revenue = this.orders.reduce((total, order) => total + order.total, 0);
+        const totalRevenue = document.getElementById('total-revenue');
+        if (totalRevenue) totalRevenue.textContent = `$${revenue.toFixed(2)}`;
+    }
+
+    loadRecentActivity() {
+        const activityContainer = document.getElementById('recent-activity');
+        if (!activityContainer) return;
+        const activities = [
+            { type: 'user', text: 'New user registered', time: '2 minutes ago' },
+            { type: 'order', text: 'Order #1234 completed', time: '15 minutes ago' },
+            { type: 'product', text: 'New product added', time: '1 hour ago' },
+            { type: 'user', text: 'User profile updated', time: '2 hours ago' }
+        ];
+
+        activityContainer.innerHTML = activities.map(activity => `
+            <div class="activity-item">
+                <div class="activity-icon ${activity.type}">
+                    <i class="fas fa-${this.getActivityIcon(activity.type)}"></i>
+                </div>
+                <div class="activity-content">
+                    <p>${activity.text}</p>
+                    <span class="activity-time">${activity.time}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    getActivityIcon(type) {
+        const icons = {
+            'user': 'user',
+            'order': 'shopping-cart',
+            'product': 'box',
+            'system': 'cog'
+        };
+        return icons[type] || 'info-circle';
+    }
+
     async loadProducts() {
         try {
             const res = await fetch(`${API_BASE_URL}/products`);
@@ -219,13 +282,12 @@ class AdminPanel {
 
     renderProducts() {
         const container = document.getElementById('products-grid');
-        if (!container) return;
-
         const filter = document.getElementById('product-category-filter');
         let filtered = this.products;
 
-        const normalizeCategory = (cat) =>
-            (cat || "").toLowerCase().replace(/\s+/g, "-");
+        const normalizeCategory = (cat) => {
+            return (cat || "").toLowerCase().replace(/\s+/g, "-");
+        };
 
         if (filter && filter.value) {
             const selected = normalizeCategory(filter.value);
@@ -233,18 +295,16 @@ class AdminPanel {
                 normalizeCategory(p.category) === selected
             );
         }
-
         container.innerHTML = filtered.map(product => `
             <div class="product-card">
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" 
-                         style="width: 220px; height: 220px; object-fit: cover;">
+                    <img src="${product.image}" alt="${product.name}" style="width: 220px; height: 220px; object-fit: cover;">
                 </div>
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     <div class="product-price">$${product.price.toFixed(2)}</div>
                     <div class="product-category">${product.category}</div>
-                    <div class="product-review">${product.quickReview || ''}</div>
+                    <div class="product-review">${product.quickReview ? product.quickReview : ''}</div>
                     <div class="product-actions">
                         <button class="btn btn-secondary" onclick="adminPanel.editProduct('${product._id}')">
                             <i class="fas fa-edit"></i> Edit
@@ -260,19 +320,15 @@ class AdminPanel {
 
     async addProduct() {
         const form = document.getElementById('add-product-form');
-        if (!form) return;
         const submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
         if (submitBtn) submitBtn.disabled = true;
-
         const formData = new FormData(form);
         if (!formData.get('name') || !formData.get('category') || !formData.get('price') || !formData.get('image')) {
             this.showNotification('Please fill in all required fields.', 'error');
             if (submitBtn) submitBtn.disabled = false;
             return;
         }
-
         formData.append('status', 'active');
-
         try {
             const res = await fetch(`${API_BASE_URL}/products`, {
                 method: 'POST',
@@ -283,7 +339,7 @@ class AdminPanel {
                 throw new Error(errorData.error || 'Failed to add product');
             }
             this.showNotification('Product added successfully!', 'success');
-            await this.loadProducts(); // only call once
+            this.loadProducts();
             this.updateStats();
             this.hideAllModals();
             form.reset();
@@ -309,7 +365,7 @@ class AdminPanel {
                 });
                 if (!res.ok) throw new Error('Failed to delete product');
                 this.showNotification('Product deleted successfully!', 'success');
-                await this.loadProducts();
+                this.loadProducts();
                 this.updateStats();
             } catch (err) {
                 this.showNotification('Error deleting product: ' + err.message, 'error');
@@ -317,11 +373,7 @@ class AdminPanel {
         }
     }
 
-    // -------------------
-    // USERS (unchanged)
-    // -------------------
-    // ... keep your existing addUser, renderUsers, deleteUser, etc.
-async loadUsers() {
+    async loadUsers() {
         try {
             const res = await fetch(`${API_BASE_URL}/users`);
             if (!res.ok) throw new Error('Failed to fetch users');
@@ -396,46 +448,54 @@ async loadUsers() {
         }
     }
 
-    // -------------------
-    // SHIPPING
-    // -------------------
-    async loadShippingSettings() {
-        try {
-            const res = await fetch(`${API_BASE_URL}/api/shipping`);
-            const data = await res.json();
-            if (data) {
-                document.getElementById("shipping-method").value = data.method || "";
-                document.getElementById("shipping-cost").value = data.cost || 0;
-                document.getElementById("shipping-estimated").value = data.estimatedDelivery || "";
-            }
-        } catch (err) {
-            console.error("Error loading shipping settings:", err);
-        }
+    saveContent() {
+        const heroTitle = document.getElementById('hero-title').value;
+        const heroDescription = document.getElementById('hero-description').value;
+        const heroButton = document.getElementById('hero-button').value;
+        const siteTitle = document.getElementById('site-title').value;
+        const siteDescription = document.getElementById('site-description').value;
+
+        const contentData = {
+            hero: { title: heroTitle, description: heroDescription, button: heroButton },
+            site: { title: siteTitle, description: siteDescription }
+        };
+
+        localStorage.setItem('docushop_content', JSON.stringify(contentData));
+        this.showNotification('Content saved successfully!', 'success');
     }
 
-    async saveShippingSettings(e) {
-        e.preventDefault();
-        try {
-            const method = document.getElementById("shipping-method").value;
-            const cost = parseFloat(document.getElementById("shipping-cost").value);
-            const estimatedDelivery = document.getElementById("shipping-estimated").value;
+    async saveSettings() {
+        const bank = document.getElementById('bank').value;
+        const paypal = document.getElementById('paypal').value;
+        const skype = document.getElementById('skype').value;
+        const bitcoin = document.getElementById('bitcoin').value;
+        const ethereum = document.getElementById('eth-address').value;
+        const usdt = document.getElementById('usdt-address').value;
 
-            const res = await fetch(`${API_BASE_URL}/api/shipping`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ method, cost, estimatedDelivery })
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/payment-methods`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ bank, paypal, skype, bitcoin, ethereum, usdt })
             });
-            if (!res.ok) throw new Error("Failed to update shipping");
-            alert("✅ Shipping settings updated!");
+
+            if (!res.ok) throw new Error('Failed to save payment methods');
+
+            this.showNotification('Payment methods updated successfully!', 'success');
+            document.getElementById('payment-methods-modal').style.display = 'none';
         } catch (err) {
-            alert("❌ Failed to update shipping: " + err.message);
+            this.showNotification('Error saving settings: ' + err.message, 'error');
         }
     }
 
-    // -------------------
-    // Notifications, stats, etc. remain same
-    // -------------------
- showNotification(message, type = 'info') {
+    logout() {
+        if (confirm('Are you sure you want to logout?')) {
+            sessionStorage.removeItem('docushop_session');
+            window.location.href = 'index.html';
+        }
+    }
+
+    showNotification(message, type = 'info') {
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.innerHTML = `
@@ -468,82 +528,176 @@ async loadUsers() {
         };
         return icons[type] || 'info-circle';
     }
+
+    // Shipping settings
+    async loadShippingSettings() {
+        try {
+            const res = await fetch(`${API_BASE_URL}/api/shipping`);
+            const data = await res.json();
+
+            if (data) {
+                document.getElementById("shipping-method").value = data.method || "";
+                document.getElementById("shipping-cost").value = data.cost || 0;
+                document.getElementById("shipping-estimated").value = data.estimatedDelivery || "";
+            }
+        } catch (err) {
+            console.error("Error loading shipping settings:", err);
+        }
+    }
+
+    async saveShippingSettings(e) {
+        e.preventDefault();
+        try {
+            const method = document.getElementById("shipping-method").value;
+            const cost = parseFloat(document.getElementById("shipping-cost").value);
+            const estimatedDelivery = document.getElementById("shipping-estimated").value;
+
+            const res = await fetch(`${API_BASE_URL}/api/shipping`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ method, cost, estimatedDelivery })
+            });
+
+            await res.json();
+            alert("✅ Shipping settings updated!");
+        } catch (err) {
+            console.error("Error saving shipping settings:", err);
+            alert("❌ Failed to update shipping settings");
+        }
+    }
 }
 
-}
+window.addEventListener('DOMContentLoaded', () => {
+    window.adminPanel = new AdminPanel();
+});
 
 // =======================
-// ORDERS (fixed cancelOrder bug)
+// ORDERS MANAGEMENT
 // =======================
+let ordersCache = []; // store orders for popup view
+
 async function fetchOrders() {
     try {
         const res = await fetch(`${API_BASE_URL}/orders`);
         if (!res.ok) throw new Error("Failed to fetch orders");
+
         const orders = await res.json();
+        console.log("[DEBUG] Orders fetched:", orders);
+
+        // ✅ Save globally for viewOrderDetails
         window.orders = orders;
-        // ... your rendering logic (unchanged)
+
+        const tbody = document.getElementById("orders-tbody");
+        tbody.innerHTML = "";
+
+        if (!orders || orders.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7">No orders found</td></tr>`;
+            return;
+        }
+
+        orders.forEach(order => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${order._id}</td>
+                <td>
+                    <strong>${order.billingInfo?.name || "N/A"}</strong><br>
+                    <small>${order.billingInfo?.email || ""}</small><br>
+                    <small>${order.billingInfo?.phone || ""}</small>
+                </td>
+                <td>
+                    ${order.products && order.products.length > 0 
+                        ? order.products.map(p => {
+                            const productName = p.product?.name || p.snapshot?.name || "Unknown";
+                            return `${productName} (x${p.quantity})`;
+                        }).join("<br>")
+                        : "No products"}
+                </td>
+                <td>$${order.total || 0}</td>
+                <td>${order.status || "pending"}</td>
+                <td>${new Date(order.createdAt).toLocaleString()}</td>
+                <td>
+                    <button onclick="viewOrderDetails('${order._id}')">👁 View</button>
+                    <button onclick="cancelOrder('${order._id}')">❌ Cancel</button>
+                </td>
+            `;
+
+            tbody.appendChild(row);
+        });
     } catch (err) {
         console.error("[ERROR] Fetching orders:", err);
+        const tbody = document.getElementById("orders-tbody");
+        if (tbody) {
+            tbody.innerHTML =
+                `<tr><td colspan="7" style="color:red;">Error loading orders</td></tr>`;
+        }
     }
 }
 
+// =======================
+// CANCEL ORDER (hard delete)
+// =======================
 async function cancelOrder(orderId) {
     if (!confirm("Are you sure you want to delete this order permanently?")) return;
+
     try {
-        const res = await fetch(`${API_BASE_URL}/orders/${orderId}`, {  // ✅ fixed endpoint
+        const res = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
             method: "DELETE"
         });
+
         if (!res.ok) throw new Error("Failed to delete order");
         alert("✅ Order deleted successfully!");
-        fetchOrders();
+        fetchOrders(); // Refresh the table
     } catch (err) {
         alert("❌ Error deleting order: " + err.message);
     }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-    window.adminPanel = new AdminPanel();
-    fetchOrders();
-});
+// =======================
+// VIEW ORDER DETAILS
+// =======================
+function viewOrderDetails(orderId) {
+    const order = window.orders?.find(o => o._id === orderId);
+    if (!order) return alert("Order not found");
 
+    const billing = order.billingInfo || {};
+    const products = order.products || [];
 
+    const productList = products.map(p => {
+        const productName = p.product?.name || p.snapshot?.name || "Unknown";
+        const productPrice = p.product?.price || p.snapshot?.price || 0;
+        return `${productName} (x${p.quantity}) - $${(productPrice * p.quantity).toFixed(2)}`;
+    }).join("<br>");
 
+    const detailsHtml = `
+        <h3>Order #${order._id}</h3>
+        <p><strong>Status:</strong> ${order.status}</p>
+        <p><strong>Date:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+        <hr>
+        <h4>Billing Info</h4>
+        <p><strong>Name:</strong> ${billing.name || "N/A"}</p>
+        <p><strong>Email:</strong> ${billing.email || "N/A"}</p>
+        <p><strong>Phone:</strong> ${billing.phone || "N/A"}</p>
+        <p><strong>Address:</strong> ${billing.address || ""}, ${billing.city || ""}, ${billing.country || ""}</p>
+        <hr>
+        <h4>Products</h4>
+        <p>${productList || "No products"}</p>
+        <hr>
+        <p><strong>Total:</strong> $${order.total || 0}</p>
+    `;
 
+    // Simple popup (you can style this later as a modal)
+    const popup = window.open("", "Order Details", "width=600,height=600");
+    popup.document.write(`<div style="font-family:sans-serif;padding:20px;">${detailsHtml}</div>`);
+    popup.document.close();
+}
 
+// =======================
+// Expose globally
+// =======================
+window.fetchOrders = fetchOrders;
+window.cancelOrder = cancelOrder;
+window.viewOrderDetails = viewOrderDetails;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Auto-run when admin panel loads
+document.addEventListener("DOMContentLoaded", fetchOrders);
