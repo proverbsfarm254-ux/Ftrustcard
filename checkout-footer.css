@@ -14,7 +14,7 @@ main {
 .site-footer {
   background: #111;   /* Black background */
   color: #ccc;
-  padding: 20px 40px;
+  padding: 100px 20px;
   margin-top: auto;   /* Makes it stick at bottom */
   font-family: Arial, sans-serif;
 }
