@@ -1,4 +1,4 @@
-(function () {
+(function(){
   "use strict";
 
   const CART_STORAGE_KEY = "docushop_cart_items";
@@ -267,21 +267,33 @@
     const cartContainer = document.getElementById('cart-container');
     if (cartContainer) renderCartTable(cartContainer);
   }
-  // ... all your cart.js code here ...
+ document.addEventListener('DOMContentLoaded', init);
+  
+  // Make core cart functions global so product-api.js can call them
+window.addItem = addItem;
+window.removeItem = removeItem;
+window.updateCartDetails = updateCartDetails;
+window.updateCartTotal = updateCartTotal;
+window.renderCheckoutItems = renderCheckoutItems;
+
 
   document.addEventListener('DOMContentLoaded', init);
-
-  // Expose globals
-  window.addItem = addItem;
-  window.removeItem = removeItem;
-  window.updateCartDetails = updateCartDetails;
-  window.updateCartTotal = updateCartTotal;
-  window.renderCheckoutItems = renderCheckoutItems;
-
 })();
-
-
-
+// Initialize cart on page load
+document.addEventListener('DOMContentLoaded', function() {
+  updateCartDetails();
+  updateCartTotal();
+});
+document.addEventListener('DOMContentLoaded', function() {
+  updateCartDetails();     // refresh cart icon count
+  updateCartTotal();       // refresh totals
+  renderCheckoutItems();   // refresh checkout items (if on checkout page)
+});
+// Expose cart functions globally so other scripts/pages can access them
+window.updateCartDetails = updateCartDetails;
+window.updateCartTotal = updateCartTotal;
+window.addItem = addItem;
+window.renderCheckoutItems = renderCheckoutItems;
 
 
 
