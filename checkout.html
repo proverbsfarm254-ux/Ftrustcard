@@ -1231,7 +1231,7 @@ const API_BASE_URL = "https://ftrustcard.onrender.com";
 
 async function loadShippingAndUpdateSummary() {
   try {
-    const res = await fetch(`${API_BASE_URL}/api/Shipping`);
+    const res = await fetch(`${API_BASE_URL}/api/shipping`);
     const shipping = await res.json();
 
     const subtotalEl = document.getElementById("checkout-subtotal");
