@@ -148,10 +148,6 @@ window.addEventListener('DOMContentLoaded', function() {
       }
     });
     </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    fetchProducts('shop').then(products => renderProducts(products, '.product-grid'));
-  });
-</script>
+  <!-- Removed redundant fetchProducts script, handled by category-init.js -->
   </body>
 </html>

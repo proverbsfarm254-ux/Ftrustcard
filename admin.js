@@ -12,12 +12,12 @@ class AdminPanel {
     }
 
     init() {
-        this.bindEvents();
-        this.loadDashboardData();
-        this.loadProducts();
-        this.loadUsers();
-        this.loadShippingSettings();
-        fetchOrders();
+    this.bindEvents();
+    this.loadDashboardData();
+    this.loadProducts();
+    this.loadUsers();
+    loadShippingSettings();
+    fetchOrders();
     }
 
     bindEvents() {
@@ -546,18 +546,22 @@ async function fetchOrders() {
     // ✅ Save globally for viewOrderDetails
     window.orders = orders;
 
-    const tbody = document.getElementById("orders-tbody");
-    tbody.innerHTML = "";
+        const tbody = document.getElementById("orders-tbody");
+        if (!tbody) {
+            console.error('Orders tbody element not found');
+            return;
+        }
+        tbody.innerHTML = "";
 
-    if (!orders || orders.length === 0) {
-      tbody.innerHTML = `<tr><td colspan="7">No orders found</td></tr>`;
-      return;
-    }
+        if (!orders || orders.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7">No orders found</td></tr>`;
+            return;
+        }
 
-    orders.forEach(order => {
-      const row = document.createElement("tr");
+        orders.forEach(order => {
+            const row = document.createElement("tr");
 
-      row.innerHTML = `
+            row.innerHTML = `
         <td>${order._id}</td>
         <td>
           <strong>${order.billingInfo?.name || "N/A"}</strong><br>
@@ -623,9 +627,12 @@ async function loadShippingSettings() {
         const data = await res.json();
 
         if (data) {
-            document.getElementById("shipping-method").value = data.method || "";
-            document.getElementById("shipping-cost").value = data.cost || 0;
-            document.getElementById("shipping-estimated").value = data.estimatedDelivery || "";
+            const methodInput = document.getElementById("shipping-method");
+            const costInput = document.getElementById("shipping-cost");
+            const estimatedInput = document.getElementById("shipping-estimated");
+            if (methodInput) methodInput.value = data.method || "";
+            if (costInput) costInput.value = data.cost || 0;
+            if (estimatedInput) estimatedInput.value = data.estimatedDelivery || "";
         }
     } catch (err) {
         console.error("Error loading shipping settings:", err);
