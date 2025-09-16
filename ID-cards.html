@@ -132,6 +132,13 @@
         </div>
       </div>
     </footer>
+    <script>
+      (function(){
+        var y = new Date().getFullYear();
+        var el = document.getElementById('year');
+        if (el) el.textContent = String(y);
+      })();
+    </script>
         <script>
     window.addEventListener('DOMContentLoaded', function() {
       const pageToCategory = {
